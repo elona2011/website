@@ -1,0 +1,132 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        @keyframes change {
+            from {
+                stroke-dasharray: 10 114.8;
+            }
+
+            to {
+                stroke-dasharray: 104.8 20;
+            }
+        }
+
+        @keyframes cc {
+            from {
+                stroke-dashoffset: 124.8;
+            }
+
+            66%{
+                stroke-dashoffset: 62.4;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        circle {
+            fill: none;
+            stroke: yellowgreen;
+            stroke-width: 5;
+            stroke-dasharray: 104.8 20;
+            animation: 0.8s cc,1.3s alternate change;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" id="svg3423" viewBox="0 0 110.995 111.78453"
+            height="31.548079mm" width="31.325256mm">
+            <defs id="defs3425" />
+            <metadata id="metadata3428">
+                <rdf:RDF>
+                    <cc:Work rdf:about="">
+                        <dc:format>image/svg+xml</dc:format>
+                        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                        <dc:title></dc:title>
+                    </cc:Work>
+                </rdf:RDF>
+            </metadata>
+            <g transform="translate(-395.93107,-727.89851)" id="layer1">
+                <path id="path3400" d="m 448.34872,728.39851 7.16022,0 13.92265,13.12707 17.70166,0.1989 6.36464,6.76243 0.19889,16.90608 12.72929,14.71823 0,7.75691 -13.12708,14.71823 0.39779,17.50276 -6.76243,6.16574 -17.50276,0 -14.12155,12.92818 -8.35359,0 -14.71823,-12.92818 -15.51381,0.1989 -7.55801,-7.75691 0,-16.30939 -12.53039,-15.31492 -0.1989,-6.16574 12.72929,-14.71823 0.19889,-17.50277 7.16022,-6.56353 16.30939,0 z"
+                    style="fill:#fff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                />
+                <path id="path3402" d="m 434.02827,771.55873 3.18232,0 1.98895,3.18232 0.39779,2.78453 -2.98342,2.38674 -3.38122,0 -2.38674,-2.78453 0.59669,-2.98342 z"
+                    style="fill:#fff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                />
+                <path id="path3404" d="m 466.05037,771.16094 3.77901,0.59669 1.59116,2.38674 0,3.9779 -3.18232,2.18784 -3.18232,-0.39779 -1.98895,-1.98895 0,-4.17679 z"
+                    style="fill:#fff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                />
+                <path id="path3406" d="m 448.54761,777.92337 6.76243,-0.59668 6.76243,4.17679 3.9779,5.56906 1.19337,4.57459 5.56906,0.99447 4.77349,4.37569 1.79005,3.38122 -0.19889,6.96133 -2.18785,4.17679 -3.9779,3.18232 -4.77348,1.19337 -35.00553,0.1989 -4.37569,-1.98895 -2.98342,-3.58011 -2.18785,-5.17127 0,-5.76796 3.77901,-4.77348 3.779,-2.38674 3.77901,-0.1989 1.59116,-5.17127 3.58011,-4.57458 5.17127,-3.77901 z"
+                    style="fill:#fff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                />
+                <path id="path3408" d="m 452.72441,791.44823 10.34254,0.1989 1.98895,1.98895 -0.79558,1.98895 -9.54696,6.36464 -4.97238,0 -9.34807,-6.76243 0.1989,-2.58564 1.59116,-1.39226 z"
+                    style="fill:#fff;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+                />
+            </g>
+        </svg>
+        <svg width="120" height="120">
+            <circle cx="60" cy="60" r="20"></circle>
+        </svg>
+        <script type="text/javascript">
+            (function () {
+                let path = document.querySelectorAll('path')
+
+                path.forEach(e => {
+                    let len = e.getTotalLength()
+                    e.style.strokeDasharray = len + ' ' + len
+                    e.style.strokeDashoffset = len
+                    e.style.transition = 'none'
+                })
+                window.addEventListener('load', el => {
+                    let path3400 = document.getElementById('path3400')
+                    path3400.style.strokeDashoffset = 0
+                    path3400.style.fill = '#ffaa00'
+                    path3400.style.transition = 'stroke-dashoffset 1.3s ease-in-out, fill 1.3s step-end'
+                    let path3402 = document.getElementById('path3402')
+                    path3402.style.strokeDashoffset = 0
+                    path3402.style.fill = '#000'
+                    path3402.style.transition =
+                        'stroke-dashoffset 1.3s ease-in-out 0.1s, fill 1.3s step-end 0.1s'
+                    let path3404 = document.getElementById('path3404')
+                    path3404.style.strokeDashoffset = 0
+                    path3404.style.fill = '#000'
+                    path3404.style.transition =
+                        'stroke-dashoffset 1.3s ease-in-out 0.2s, fill 1.3s step-end 0.2s'
+                    let path3406 = document.getElementById('path3406')
+                    path3406.style.strokeDashoffset = 0
+                    path3406.style.transition = 'stroke-dashoffset 1.3s ease-in-out 0.3s'
+                    let path3408 = document.getElementById('path3408')
+                    path3408.style.strokeDashoffset = 0
+                    path3408.style.fill = '#000'
+                    path3408.style.transition =
+                        'stroke-dashoffset 1.3s ease-in-out 0.6s, fill 1.3s step-end 0.6s'
+                })
+
+                let circle = document.querySelector('circle'),
+                    len = circle.getTotalLength()
+                // circle.style.strokeDasharray = len / 2 + ' ' + len / 2
+                // circle.style.strokeDashoffset = len
+                // circle.style.transition = 'none'
+
+                // window.addEventListener('load', el => {
+                //     circle.style.transition = 'stroke-dashoffset 2s,stroke-dasharray 2s'
+                //     circle.style.strokeDasharray = 50 + ' ' + 0
+                //     // circle.style.strokeDashoffset = 0
+                // })
+
+
+            })();
+        </script>
+    </div>
+
+</body>
+
+</html>
