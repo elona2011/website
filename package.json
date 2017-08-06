@@ -4,26 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "del lib /Q&& babel --presets es2015-loose,stage-1 --plugins transform-runtime src/ --out-dir lib/ --source-maps&& copy .\\src\\*.css .\\lib",
-    "start": "gulp",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "yamu": "0.0.1",
-    "browser-sync": "^2.17.6",
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-ejs": "^2.2.1",
-    "gulp-ruby-sass": "^2.1.1",
-    "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.11",
-    "babel-cli": "6.x.x",
-    "babel-core": "6.x.x",
-    "babel-plugin-transform-runtime": "6.x.x",
-    "babel-preset-es2015-loose": "6.x.x",
-    "babel-preset-stage-1": "6.x.x"
+    "webpack": "^3.4.1",
+    "yamu": ">=0.0.1"
   }
 }

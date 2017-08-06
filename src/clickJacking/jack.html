@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        button{
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<body>
+    <button>click me</button>
+    <script type="text/javascript">
+        let jack = document.querySelector('button')
+        jack.style.position = 'absolute'
+        document.addEventListener('mousemove', e => {
+            jack.style.top = e.clientY-5 + 'px'
+            jack.style.left = e.clientX-5 + 'px'
+        })
+    </script>
+</body>
+
+</html>
