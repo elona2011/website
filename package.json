@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^3.4.1",
     "yamu": ">=0.0.1"
   }
 }
