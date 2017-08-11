@@ -2,14 +2,15 @@ const http = require('http')
 const url = require('url')
 const fs = require('fs')
 const path = require('path')
+const opn = require('opn')
 
 const port = process.argv[2] || 9000;
 
-http.createServer(function(req, res) {
+http.createServer(function (req, res) {
     console.log(`${req.method} ${req.url}`)
 
     const parsedUrl = url.parse(req.url)
-    let pathname = `.${parsedUrl.pathname}`
+    let pathname = `./src${parsedUrl.pathname}`
 
     const mimeType = {
         '.ico': 'image/x-icon',
@@ -28,7 +29,7 @@ http.createServer(function(req, res) {
         '.ttf': 'aplication/font-sfnt'
     };
 
-    fs.exists(pathname, function(exists) {
+    fs.exists(pathname, function (exists) {
         if (!exists) {
             res.statusCode = 404
             res.end(`File ${pathname} not found!`)
@@ -44,7 +45,7 @@ http.createServer(function(req, res) {
             return
         }
 
-        fs.readFile(pathname, function(err, data) {
+        fs.readFile(pathname, function (err, data) {
             if (err) {
                 res.statusCode = 500
                 res.end(`Error getting the file: ${err}`)
@@ -56,3 +57,5 @@ http.createServer(function(req, res) {
         })
     })
 }).listen(parseInt(port))
+
+opn('http://localhost:' + port)
