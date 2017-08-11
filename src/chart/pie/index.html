@@ -8,7 +8,7 @@
 
 <body>
     <div id="pie"></div>
-     <!-- <svg width="100%" height="100%" viewBox="0 0 100 100" class="donut">
+    <!-- <svg width="100%" height="100%" viewBox="0 0 100 100" class="donut">
   <circle class="donut-hole" cx="21" cy="21" r="15.91549430918954" fill="#fff"></circle>
   <circle class="donut-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#d2d3d4" stroke-width="3"></circle>
 
@@ -18,7 +18,16 @@
     <script type="text/javascript">
         let pie = new Pie({
             dom: document.querySelector('#pie'),
-            data: [0.9, 0.2, 0.5, 2.2, 3.3, 4.4]
+            data: {
+                value: [0.9, 0.2, 0.5, 2.2, 3.3, 4.4],
+                innerText: [{
+                    value: 'aaa',
+                    size: 18
+                },{
+                    value: 'bb',
+                    size: 18
+                }]
+            }
         })
     </script>
 </body>

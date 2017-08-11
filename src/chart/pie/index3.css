@@ -1,0 +1,16 @@
+.pie {
+    width: 400px;
+    height: 400px
+}
+.pie .c1 {
+    fill: #fff;
+    stroke: #655;
+    stroke-width: 40;
+    stroke-dasharray: 524 630;
+}
+.pie .c2 {
+    fill: #fff;
+    stroke: red;
+    stroke-width: 40;
+    stroke-dasharray: 20 630;
+}
