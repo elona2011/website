@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack",
-        "test": "mocha"
+        "test": "mocha",
+        "yamu": "yamu"
     },
     "author": "",
     "license": "ISC",
@@ -15,6 +16,7 @@
         "opn": "^5.1.0",
         "postcss": "^6.0.8",
         "postcss-cssnext": "^3.0.2",
-        "precss": "^2.0.0"
+        "precss": "^2.0.0",
+        "yamu": "0.0.x"
     }
 }
