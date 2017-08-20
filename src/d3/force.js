@@ -106,14 +106,14 @@ let canvas = d3.select('#network'),
     r = 20,
     ctx = canvas.node().getContext('2d'),
     simulation = d3.forceSimulation()
-    // .alphaMin(0.9)
-    .alphaDecay(0.07)
-    .force('x', d3.forceX(width / 2))
-    .force('y', d3.forceY(height / 2))
-    .force('collide', d3.forceCollide(2 * r))
-    // .force('charge', d3.forceManyBody().strength(-20))
-    .force('link', d3.forceLink().id(d => d.nodeName))
-    .on('tick', update)
+        // .alphaMin(0.9)
+        .alphaDecay(0.07)
+        .force('x', d3.forceX(width / 2))
+        .force('y', d3.forceY(height / 2))
+        .force('collide', d3.forceCollide(2 * r))
+        // .force('charge', d3.forceManyBody().strength(-20))
+        .force('link', d3.forceLink().id(d => d.nodeName))
+        .on('tick', update)
 
 data.forEach(d => {
     d.x = Math.random() * width
@@ -169,26 +169,29 @@ function drawArrow(x1, y1, x2, y2) {
 
 function getPoint(x1, y1, x2, y2) {
     const len = 15
-    let angle = Math.atan((y2 - y1) / (x2 - x1)),
+    let angle = Math.abs(Math.atan((y2 - y1) / (x2 - x1))),
         angle0 = Math.PI / 2 - angle,
         angle1 = angle - Math.PI / 12,
         angle2 = Math.PI / 2 - angle1,
         angle3 = Math.PI / 3 - angle1,
         angle4 = Math.PI / 2 - angle3
 
+    let x0 = x2 > x1 ? x2 - r * Math.sin(angle0) : x2 + r * Math.sin(angle0)
+    let y0 = y2 > y1 ? y2 - r * Math.sin(angle) : y2 + r * Math.sin(angle)
+
     return [{
-        x: x2 - r * Math.sin(angle0),
-        y: y2 - r * Math.sin(angle),
+        x: x0,
+        y: y0,
     }, {
-        x: x2 - r * Math.sin(angle0) - len * Math.sin(angle2),
-        y: y2 - r * Math.sin(angle) - len * Math.sin(angle1),
+        x: x2 > x1 ? x0 - len * Math.sin(angle2) : x0 + len * Math.sin(angle2),
+        y: y2 > y1 ? y0 - len * Math.sin(angle1) : y0 + len * Math.sin(angle1),
     }, {
-        x: x2 - r * Math.sin(angle0) - len * Math.sin(angle3),
-        y: y2 - r * Math.sin(angle) - len * Math.sin(angle4),
+        x: x2 > x1 ? x0 - len * Math.sin(angle3) : x0 + len * Math.sin(angle3),
+        y: y2 > y1 ? y0 - len * Math.sin(angle4) : y0 + len * Math.sin(angle4),
     }]
 }
 
-document.getElementById('network').onmousemove = function(e) {
+document.getElementById('network').onmousemove = function (e) {
     let rect = this.getBoundingClientRect(),
         x = e.clientX - rect.left,
         y = e.clientY - rect.top,
@@ -214,4 +217,11 @@ function getHoverIndex(x, y, d) {
         }
     })
     return index
+}
+
+if (typeof module === 'object' && module.exports) {
+    module.exports = {
+        drawArrow,
+        getPoint
+    }
 }

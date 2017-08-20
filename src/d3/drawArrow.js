@@ -1,7 +1,12 @@
-let canvas = document.querySelector('canvas')
-let ctx = canvas.getContext('2d')
-let r = 20
-drawLink(100, 20, 30, 200)
+if (typeof document === 'object') {
+    var canvas = document.querySelector('canvas')
+    var ctx = canvas.getContext('2d')
+    var r = 40
+    drawLink(100, 20, 30, 200)
+    drawLink(10, 20, 200, 200)
+    drawLink(400, 400, 300, 300)
+    drawLink(100, 400, 300, 300)
+}
 
 function drawLink(x1, y1, x2, y2) {
     ctx.beginPath()
@@ -12,7 +17,7 @@ function drawLink(x1, y1, x2, y2) {
 }
 
 function drawArrow(x1, y1, x2, y2) {
-    let p = getPoint(x1, y1, x2, y2)
+    let p = getPoint(x1, y1, x2, y2, r)
     ctx.beginPath()
     ctx.moveTo(p[0].x, p[0].y)
     ctx.lineTo(p[1].x, p[1].y);
@@ -21,8 +26,8 @@ function drawArrow(x1, y1, x2, y2) {
     ctx.fill()
 }
 
-function getPoint(x1, y1, x2, y2) {
-    const len = 40
+function getPoint(x1, y1, x2, y2, r) {
+    const len = 15
     let angle = Math.abs(Math.atan((y2 - y1) / (x2 - x1))),
         angle0 = Math.PI / 2 - angle,
         angle1 = angle - Math.PI / 12,
@@ -37,10 +42,14 @@ function getPoint(x1, y1, x2, y2) {
         x: x0,
         y: y0,
     }, {
-        x: x0 - len * Math.sin(angle2),
-        y: y0 - len * Math.sin(angle1),
+        x: x2 > x1 ? x0 - len * Math.sin(angle2) : x0 + len * Math.sin(angle2),
+        y: y2 > y1 ? y0 - len * Math.sin(angle1) : y0 + len * Math.sin(angle1),
     }, {
-        x: x0 - len * Math.sin(angle3),
-        y: y0 - len * Math.sin(angle4),
+        x: x2 > x1 ? x0 - len * Math.sin(angle3) : x0 + len * Math.sin(angle3),
+        y: y2 > y1 ? y0 - len * Math.sin(angle4) : y0 + len * Math.sin(angle4),
     }]
+}
+
+if (typeof module === 'object' && module.exports) {
+    module.exports = getPoint
 }
