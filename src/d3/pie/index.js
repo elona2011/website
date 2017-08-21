@@ -27,6 +27,7 @@ g.selectAll('path.slice')
 
 let legend = svg.append('g')
     .attr('class', 'legend')
+    
 legend.selectAll('rect')
     .data(slices)
     .enter()
@@ -35,6 +36,7 @@ legend.selectAll('rect')
     .attr('height', 10)
     .attr('fill', d => color(d.data.product))
     .attr('y', (d, i) => 20 * (i + 1) - 10)
+
 legend.selectAll('text')
     .data(slices)
     .enter()
