@@ -1,0 +1,28 @@
+.hidden {
+  display: none;
+}
+
+.link {
+  stroke: #aaa;
+}
+
+.node {
+  pointer-events: all;
+  stroke: none;
+  stroke-width: 40px;
+  fill: #aaa;
+}
+
+text {
+  text-anchor: middle;
+  fill: #000;
+  pointer-events: none;
+}
+
+.dragline {
+  stroke: #aaa;
+}
+
+svg {
+  user-select: none;
+}

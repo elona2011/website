@@ -118,7 +118,7 @@ for (var key in nodes) {
 var width = 1200,
     height = 500;
 
-var force = d3.forceSimulation() //layout将json格式转化为力学图可用的格式
+var force = d3.layout.force() //layout将json格式转化为力学图可用的格式
     .nodes(d3.values(nodes)) //设定节点数组
     .links(links) //设定连线数组
     .size([width, height]) //作用域的大小
