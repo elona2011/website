@@ -164,16 +164,18 @@
             .on('mousedown', function (d) {
                 if (drawLineEnable) {
                     drawLineFrom = d
+
+                    //去除所有
                     clearAllEditStyle()
 
+                    //选中当前元素
                     let g = d3.select(this)
                     g.classed('selected', true)
                     g.select('use').classed('hidden', false)
-                    data
                     drag_line.attr('marker-mid', 'url(#Triangle)')
                         .attr('class', 'dragline')
                         .attr('d', `M${d.x},${d.y}L${d.x},${d.y}`)
-                    simulation.alphaTarget(0.3).restart()
+                    simulation.alphaTarget(0.1).restart()
                 }
             }).on('mouseup', d => {
                 // d3.event.stopPropagation();
