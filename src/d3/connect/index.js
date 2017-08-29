@@ -1,4 +1,4 @@
-(function() {
+(function () {
     class RectGroup {
         constructor(nodes, links) {
             this.nodes = nodes || []
@@ -60,7 +60,7 @@
         rectWidth = 100,
         rectHeight = 50,
         index = 10,
-        gMerge, path,
+        gMerge, path, pathHover,
         drawLineEnable = false,
         drawLineFrom, drawLineTo
 
@@ -84,31 +84,55 @@
     }
 
     function initD3() {
-        let link = svg.selectAll('.link')
+        let linkData = svg.selectAll('.link')
             .data(data.links, d => d.target.id)
-        link.exit().remove()
-        link = link.enter()
+        linkData.exit().remove()
+        let g = linkData.enter()
             .append('g')
-            .on('click', function(d) {
-                d3.select(this)
-                    .select('use')
-                    .classed('hidden', false)
-            })
-        path = link.append('path')
             .attr('class', 'link')
+            .on('click', function (d) {
+                if (drawLineEnable) {
+                    let l = d3.select(this)
+                    l.select('.line-hover')
+                        .classed('selected', true)
+                    l.select('use')
+                        .classed('hidden', false)
+                        .attr('x', function (d) {
+                            return (d.source.x + d.target.x) / 2 - 5
+                        })
+                        .attr('y', function (d) {
+                            return (d.source.y + d.target.y) / 2 - 5
+                        })
+                }
+            })
+        path = g.append('path')
+            .attr('class', 'line')
             .attr('marker-mid', 'url(#Triangle)')
-        path.merge(path)
-        link.append('use')
+            .merge(linkData.select('.line'))
+        pathHover = g.append('path')
+            .attr('class', 'line-hover')
+            .merge(linkData.select('.line-hover'))
+
+        g.append('use')
             .attr('class', 'cross hidden')
             .attr('xlink:href', '#cross')
-            .attr('x',function (d) {
-                d
+            .on('click', d => {
+                data.links = data.links.filter(n => n.source.id !== d.source.id || n.target.id !== d.target.id)
+                initD3()
+                clearAllEditStyle()
             })
+
+        svg.selectAll('.link,.node')
+            .sort((a, b) => {
+                if (a.source) return -1
+                else return 1
+            })
+
 
         dataJoin = svg.selectAll('.node')
             .data(data.nodes, d => d.id)
         dataJoin.exit().remove()
-        let g = dataJoin.enter()
+        g = dataJoin.enter()
             .append('g')
             .attr('class', 'node')
 
@@ -126,7 +150,7 @@
             .attr('class', 'cross hidden')
             .attr('xlink:href', '#cross')
             .attr('transform', 'translate(' + (rectWidth / 2 - 5) + ',-' + (rectHeight / 2 + 5) + ')')
-            .on('click', function(d) {
+            .on('click', function (d) {
                 data.nodes = data.nodes.filter(n => n.id !== d.id)
                 data.links = data.links.filter(n => n.source.id !== d.id && n.target.id !== d.id)
                 initD3()
@@ -137,7 +161,7 @@
                 .on('start', dragstarted)
                 .on('drag', dragged)
                 .on('end', dragended))
-            .on('mousedown', function(d) {
+            .on('mousedown', function (d) {
                 if (drawLineEnable) {
                     drawLineFrom = d
                     clearAllEditStyle()
@@ -173,13 +197,18 @@
     }
 
     function ticked() {
-        path.attr("d", function(d) {
+        path.attr("d", function (d) {
+            let centerX = d.source.x + (d.target.x - d.source.x) / 2,
+                centerY = d.source.y + (d.target.y - d.source.y) / 2
+            return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
+        })
+        pathHover.attr("d", function (d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
         })
 
-        gMerge.attr("transform", function(d) {
+        gMerge.attr("transform", function (d) {
             return "translate(" + d.x + ", " + d.y + ")";
         });
     }
@@ -262,5 +291,6 @@
     function clearAllEditStyle() {
         d3.selectAll('.node').classed('selected', false)
         d3.selectAll('.cross').classed('hidden', true)
+        d3.selectAll('.selected').classed('selected', false)
     }
 })();
