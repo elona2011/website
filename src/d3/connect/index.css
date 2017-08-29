@@ -1,28 +1,53 @@
+div.svg svg {
+  user-select: none;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+div.svg svg.edit {
+  border: 2px dashed red;
+}
+
 .hidden {
   display: none;
 }
 
-.link {
+div.svg svg .link {
   stroke: #aaa;
+  stroke-width: 4;
 }
 
-.node {
+div.svg svg .rect {
+  fill: #aaa;
+}
+
+
+/* div.svg svg .node {
   pointer-events: all;
   stroke: none;
   stroke-width: 40px;
   fill: #aaa;
-}
+} */
 
-text {
+div.svg svg text {
   text-anchor: middle;
   fill: #000;
   pointer-events: none;
+  stroke: none;
 }
 
-.dragline {
+div.svg svg .dragline {
   stroke: #aaa;
 }
 
-svg {
-  user-select: none;
+div.svg svg .selected {
+  stroke: red;
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+}
+
+div.svg svg .cross {
+  stroke: red;
+  stroke-width: 2;
+  stroke-dasharray: none;
+  fill: #fff;
 }

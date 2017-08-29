@@ -1,4 +1,4 @@
-(function () {
+(function() {
     class RectGroup {
         constructor(nodes, links) {
             this.nodes = nodes || []
@@ -16,13 +16,20 @@
         }
 
         addLink(source, target) {
+            if (!source || !target) return
+
             let r = this.links.find(n => {
                 if (n.source.id === source.id && n.target.id === target.id)
                     return true
-                else if (n.source.id === target.id && n.target.id === source.id)
+                if (n.source.id === target.id && n.target.id === source.id)
                     return true
             })
+
+            //该两点间已经存在link
             if (r) return
+
+            //起点终点相同
+            if (source.id === target.id) return
 
             this.links.push({
                 source,
@@ -34,6 +41,7 @@
             this.rectData.pop()
         }
     }
+
     let data = new RectGroup([{
                 "id": 1,
                 "name": "server 1"
@@ -52,7 +60,7 @@
         rectWidth = 100,
         rectHeight = 50,
         index = 10,
-        node, link,
+        gMerge, path,
         drawLineEnable = false,
         drawLineFrom, drawLineTo
 
@@ -76,53 +84,87 @@
     }
 
     function initD3() {
-        link = svg.selectAll('.link')
+        let link = svg.selectAll('.link')
             .data(data.links, d => d.target.id)
-        // link.exit().remove()
+        link.exit().remove()
         link = link.enter()
-            .append('path')
+            .append('g')
+            .on('click', function(d) {
+                d3.select(this)
+                    .select('use')
+                    .classed('hidden', false)
+            })
+        path = link.append('path')
             .attr('class', 'link')
             .attr('marker-mid', 'url(#Triangle)')
-            .merge(link)
+        path.merge(path)
+        link.append('use')
+            .attr('class', 'cross hidden')
+            .attr('xlink:href', '#cross')
+            .attr('x',function (d) {
+                d
+            })
 
-        node = svg.selectAll('.node')
+        dataJoin = svg.selectAll('.node')
             .data(data.nodes, d => d.id)
-        // node.exit().remove()
-        node = node.enter()
+        dataJoin.exit().remove()
+        let g = dataJoin.enter()
             .append('g')
-            .merge(node)
             .attr('class', 'node')
-            // .on("click", click)
+
+        g.append('rect')
+            .attr('class', 'rect')
+            .attr('width', rectWidth)
+            .attr('height', rectHeight)
+            .attr('transform', 'translate(-' + rectWidth / 2 + ',-' + rectHeight / 2 + ')')
+
+        g.append('text')
+            .attr('dy', 3)
+            .text(d => d.name)
+
+        g.append('use')
+            .attr('class', 'cross hidden')
+            .attr('xlink:href', '#cross')
+            .attr('transform', 'translate(' + (rectWidth / 2 - 5) + ',-' + (rectHeight / 2 + 5) + ')')
+            .on('click', function(d) {
+                data.nodes = data.nodes.filter(n => n.id !== d.id)
+                data.links = data.links.filter(n => n.source.id !== d.id && n.target.id !== d.id)
+                initD3()
+            })
+
+        gMerge = g.merge(dataJoin)
             .call(d3.drag()
                 .on('start', dragstarted)
                 .on('drag', dragged)
                 .on('end', dragended))
-
-        if (drawLineEnable) {
-            node.on('.drag', null)
-        }
-
-        node.append('rect')
-            .attr('width', rectWidth)
-            .attr('height', rectHeight)
-            .attr('transform', 'translate(-' + rectWidth / 2 + ',-' + rectHeight / 2 + ')')
-            .on('mousedown', d => {
+            .on('mousedown', function(d) {
                 if (drawLineEnable) {
                     drawLineFrom = d
+                    clearAllEditStyle()
+
+                    let g = d3.select(this)
+                    g.classed('selected', true)
+                    g.select('use').classed('hidden', false)
+                    data
                     drag_line.attr('marker-mid', 'url(#Triangle)')
                         .attr('class', 'dragline')
                         .attr('d', `M${d.x},${d.y}L${d.x},${d.y}`)
+                    simulation.alphaTarget(0.3).restart()
                 }
             }).on('mouseup', d => {
+                // d3.event.stopPropagation();
                 drawLineTo = d
                 data.addLink(drawLineFrom, drawLineTo)
                 initD3();
-                simulation.alphaTarget(0.3).restart()
+                simulation.alphaTarget(0)
+                if (drawLineFrom !== drawLineTo) {
+                    clearAllEditStyle()
+                }
             })
 
-        node.append('text')
-            .attr('dy', 3)
-            .text(d => d.name)
+        if (drawLineEnable) {
+            gMerge.on('.drag', null)
+        }
 
         simulation.nodes(data.nodes)
             .on('tick', ticked)
@@ -130,27 +172,14 @@
             .links(data.links)
     }
 
-    function click(d) {
-        data.nodes.push({
-            id: index,
-            name: "server " + index
-        });
-        data.links.push({
-            source: d.id,
-            target: index
-        });
-        index++;
-        initD3();
-    }
-
     function ticked() {
-        link.attr("d", function (d) {
+        path.attr("d", function(d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
         })
 
-        node.attr("transform", function (d) {
+        gMerge.attr("transform", function(d) {
             return "translate(" + d.x + ", " + d.y + ")";
         });
     }
@@ -177,26 +206,36 @@
     }
 
     function addEvent() {
-        let buttonAdd = document.querySelector('.connect .add')
-        let buttonView = document.querySelector('.connect .view')
-        let buttonLine = document.querySelector('.connect .line')
+        let buttonAdd = document.querySelector('.connect .add'),
+            buttonView = document.querySelector('.connect .view'),
+            buttonEdit = document.querySelector('.connect .edit'),
+            svg = document.querySelector('svg')
+
         buttonAdd.addEventListener('click', e => {
             data.addNode()
             initD3();
-            // simulation.alphaTarget(1).restart()
+            simulation.alphaTarget(0.3).restart()
         }, false)
 
         buttonView.addEventListener('click', e => {
-            buttonView.classList.toggle('hidden')
-            buttonLine.classList.toggle('hidden')
-            drawLineEnable = true
+            buttonView.classList.add('hidden')
+            buttonEdit.classList.remove('hidden')
+            buttonAdd.classList.add('hidden')
+
+            svg.classList.remove('edit')
+            clearAllEditStyle()
+
+            drawLineEnable = false
             initD3()
         }, false)
 
-        buttonLine.addEventListener('click', e => {
-            buttonView.classList.toggle('hidden')
-            buttonLine.classList.toggle('hidden')
-            drawLineEnable = false
+        buttonEdit.addEventListener('click', e => {
+            buttonView.classList.remove('hidden')
+            buttonEdit.classList.add('hidden')
+            buttonAdd.classList.remove('hidden')
+
+            svg.classList.add('edit')
+            drawLineEnable = true
             initD3()
         }, false)
     }
@@ -214,6 +253,14 @@
         if (drawLineEnable && drawLineFrom) {
             drag_line.attr('class', 'hidden')
             drawLineFrom = null
+        } else {
+            clearAllEditStyle()
         }
+        simulation.alphaTarget(0)
+    }
+
+    function clearAllEditStyle() {
+        d3.selectAll('.node').classed('selected', false)
+        d3.selectAll('.cross').classed('hidden', true)
     }
 })();

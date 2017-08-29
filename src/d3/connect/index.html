@@ -8,15 +8,19 @@
 
 <body>
     <div class="connect">
-        <button class="add">++++</button>
-        <button class="view">view</button>
-        <button class="line hidden">line</button>
+        <button class="view hidden">view</button>
+        <button class="edit">edit</button>
+        <button class="add hidden">++++</button>
         <div class="svg">
             <svg width="1000" height="500">
                 <defs>
-                    <marker id="Triangle" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+                    <marker id="Triangle" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="5" markerHeight="5" orient="auto" fill="#aaa">
                         <path d="M 0 0 L 10 5 L 0 10 z" />
                     </marker>
+                    <g id="cross">
+                        <circle r="10" cx="5" cy="5"/>
+                        <path d="M0,0L10,10M0,10L10,0"/>
+                    </g>
                 </defs>
             </svg>
         </div>
