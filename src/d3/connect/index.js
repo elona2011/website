@@ -1,4 +1,4 @@
-(function () {
+(function() {
     class RectGroup {
         constructor(nodes, links) {
             this.nodes = nodes || []
@@ -60,7 +60,7 @@
         rectWidth = 100,
         rectHeight = 50,
         index = 10,
-        gMerge, path, pathHover,
+        gMerge, path, pathHover, pathCross,
         drawLineEnable = false,
         drawLineFrom, drawLineTo
 
@@ -70,9 +70,9 @@
 
     const simulation = d3.forceSimulation()
         .force('link', d3.forceLink().id(d => d.id).distance(100))
-        .force('charge', d3.forceManyBody().strength(100))
+        .force('charge', d3.forceManyBody().strength(200))
         .force('center', d3.forceCenter(svgWidth / 2, svgHeight / 2))
-        .force('collide', d3.forceCollide(70))
+        .force('collide', d3.forceCollide(80))
 
     init()
 
@@ -84,24 +84,31 @@
     }
 
     function initD3() {
+        let g
         let linkData = svg.selectAll('.link')
             .data(data.links, d => d.target.id)
         linkData.exit().remove()
-        let g = linkData.enter()
+        g = linkData.enter()
             .append('g')
             .attr('class', 'link')
-            .on('click', function (d) {
+            .on('click', function(d) {
                 if (drawLineEnable) {
                     let l = d3.select(this)
                     l.select('.line-hover')
                         .classed('selected', true)
                     l.select('use')
                         .classed('hidden', false)
-                        .attr('x', function (d) {
+                        .attr('x', function(d) {
                             return (d.source.x + d.target.x) / 2 - 5
                         })
-                        .attr('y', function (d) {
+                        .attr('y', function(d) {
                             return (d.source.y + d.target.y) / 2 - 5
+                        })
+                        .on('mousedown', d => {
+                            data.links = data.links.filter(n => n.source.id !== d.source.id || n.target.id !== d.target.id)
+                            initD3()
+                            clearAllEditStyle()
+                            simulation.alphaTarget(0.1).restart()
                         })
                 }
             })
@@ -113,21 +120,17 @@
             .attr('class', 'line-hover')
             .merge(linkData.select('.line-hover'))
 
-        g.append('use')
+        pathCross = g.append('use')
             .attr('class', 'cross hidden')
             .attr('xlink:href', '#cross')
-            .on('click', d => {
-                data.links = data.links.filter(n => n.source.id !== d.source.id || n.target.id !== d.target.id)
-                initD3()
-                clearAllEditStyle()
-            })
+            .merge(linkData.select('.cross'))
 
+        //防止link遮盖rect
         svg.selectAll('.link,.node')
             .sort((a, b) => {
                 if (a.source) return -1
                 else return 1
             })
-
 
         dataJoin = svg.selectAll('.node')
             .data(data.nodes, d => d.id)
@@ -150,18 +153,13 @@
             .attr('class', 'cross hidden')
             .attr('xlink:href', '#cross')
             .attr('transform', 'translate(' + (rectWidth / 2 - 5) + ',-' + (rectHeight / 2 + 5) + ')')
-            .on('click', function (d) {
-                data.nodes = data.nodes.filter(n => n.id !== d.id)
-                data.links = data.links.filter(n => n.source.id !== d.id && n.target.id !== d.id)
-                initD3()
-            })
 
         gMerge = g.merge(dataJoin)
             .call(d3.drag()
                 .on('start', dragstarted)
                 .on('drag', dragged)
                 .on('end', dragended))
-            .on('mousedown', function (d) {
+            .on('mousedown', function(d) {
                 if (drawLineEnable) {
                     drawLineFrom = d
 
@@ -171,9 +169,15 @@
                     //选中当前元素
                     let g = d3.select(this)
                     g.classed('selected', true)
-                    g.select('use').classed('hidden', false)
+                    g.select('use')
+                        .classed('hidden', false)
+                        .on('mousedown', function(d) {
+                            data.nodes = data.nodes.filter(n => n.id !== d.id)
+                            data.links = data.links.filter(n => n.source.id !== d.id && n.target.id !== d.id)
+                            initD3()
+                        })
                     drag_line.attr('marker-mid', 'url(#Triangle)')
-                        .attr('class', 'dragline')
+                        .classed('hidden', false)
                         .attr('d', `M${d.x},${d.y}L${d.x},${d.y}`)
                     simulation.alphaTarget(0.1).restart()
                 }
@@ -199,18 +203,24 @@
     }
 
     function ticked() {
-        path.attr("d", function (d) {
+        path.attr("d", function(d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
         })
-        pathHover.attr("d", function (d) {
+        pathHover.attr("d", function(d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
+        })
+        pathCross.attr('x', d => {
+            return (d.source.x + d.target.x) / 2
+        })
+        pathCross.attr('y', d => {
+            return (d.source.y + d.target.y) / 2
         })
 
-        gMerge.attr("transform", function (d) {
+        gMerge.attr("transform", function(d) {
             return "translate(" + d.x + ", " + d.y + ")";
         });
     }
@@ -282,7 +292,7 @@
 
     function mouseup() {
         if (drawLineEnable && drawLineFrom) {
-            drag_line.attr('class', 'hidden')
+            drag_line.classed('hidden', true)
             drawLineFrom = null
         } else {
             clearAllEditStyle()

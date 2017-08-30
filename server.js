@@ -3,14 +3,31 @@ const url = require('url')
 const fs = require('fs')
 const path = require('path')
 const opn = require('opn')
+const program = require('commander')
 
-const port = process.argv[2] || 9000;
+let port = 9000,
+    dir = path.join(process.cwd(), 'src')
 
-http.createServer(function (req, res) {
+program
+    .option('-d, --dir <dir>')
+    .option('-p, --port <port>')
+    .parse(process.argv)
+
+if (program.port) {
+    port = program.port
+}
+
+if (program.dir) {
+    dir = path.join(process.cwd(), program.dir)
+}
+
+console.log('server starting at', dir, '...')
+
+http.createServer(function(req, res) {
     console.log(`${req.method} ${req.url}`)
 
     const parsedUrl = url.parse(req.url)
-    let pathname = `./src${parsedUrl.pathname}`
+    let pathname = dir + parsedUrl.pathname
 
     const mimeType = {
         '.ico': 'image/x-icon',
@@ -29,7 +46,7 @@ http.createServer(function (req, res) {
         '.ttf': 'aplication/font-sfnt'
     };
 
-    fs.exists(pathname, function (exists) {
+    fs.exists(pathname, function(exists) {
         if (!exists) {
             res.statusCode = 404
             res.end(`File ${pathname} not found!`)
@@ -45,7 +62,7 @@ http.createServer(function (req, res) {
             return
         }
 
-        fs.readFile(pathname, function (err, data) {
+        fs.readFile(pathname, function(err, data) {
             if (err) {
                 res.statusCode = 500
                 res.end(`Error getting the file: ${err}`)
