@@ -10,7 +10,10 @@
         "tpl": "tpl",
         "server": "server"
     },
-    "author": "",
+    "config": {
+        "dir": "src/d3/bubble"
+    },
+    "author": "jie",
     "license": "ISC",
     "devDependencies": {
         "mocha": "^3.5.0",
