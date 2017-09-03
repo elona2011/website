@@ -48,7 +48,7 @@ div.svg svg .selected {
 
 div.svg svg .cross {
   stroke: red;
-  stroke-width: 20;
+  stroke-width: 2;
   stroke-dasharray: none;
   fill: #fff;
 
