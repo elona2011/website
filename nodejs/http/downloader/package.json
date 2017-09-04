@@ -1,0 +1,11 @@
+{
+  "name": "downloader",
+  "version": "1.0.0",
+  "description": "支持多端口、断点续传的nodejs下载器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

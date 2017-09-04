@@ -171,8 +171,8 @@ caniuse-api@^2.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000718:
-  version "1.0.30000721"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000721.tgz#931a21a7bd85016300328d21f126d84b73437d35"
+  version "1.0.30000722"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000722.tgz#8cbfe07440478e3a16ab0d3b182feef1901eab55"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -1557,8 +1557,8 @@ ws@^3.1.0:
     ultron "~1.1.0"
 
 yamu@>=0.0.1:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/yamu/-/yamu-0.0.20.tgz#d95579dfb5a786b82c1f2dd2739c3bc048599430"
+  version "0.0.23"
+  resolved "https://registry.yarnpkg.com/yamu/-/yamu-0.0.23.tgz#c6e648baf0da33852aeb386ed0b1acea55f2bb40"
   dependencies:
     chokidar "^1.7.0"
     commander "^2.11.0"
