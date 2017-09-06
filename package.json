@@ -8,10 +8,14 @@
         "test": "mocha",
         "pcss": "pcss",
         "tpl": "tpl",
-        "server": "server"
+        "server": "server",
+        "product": "product"
     },
     "config": {
-        "dir": "browser/d3/bubble"
+        "dir": "browser/d3/bubble",
+        "product": {
+            "from": "browser"
+        }
     },
     "author": "jie",
     "license": "ISC",
