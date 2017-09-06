@@ -1861,8 +1861,8 @@ yallist@^2.1.2:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 yamu@>=0.0.1:
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/yamu/-/yamu-0.0.27.tgz#ad0ae1f142445837782efe9b60c566e847d8de7d"
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/yamu/-/yamu-0.0.28.tgz#090c706627fab4e5f066aa01e3ed79188a7c552e"
   dependencies:
     chokidar "^1.7.0"
     commander "^2.11.0"
