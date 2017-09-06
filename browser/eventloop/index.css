@@ -1,0 +1,35 @@
+.wrap {
+  padding: 10px;
+}
+
+@-webkit-keyframes example {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 500px;
+  }
+}
+
+@keyframes example {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 500px;
+  }
+}
+
+.animation-move {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background: red;
+  position: relative;
+  -webkit-animation-name: example;
+          animation-name: example;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}

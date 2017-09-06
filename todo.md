@@ -1,2 +1,4 @@
-1 自动布署
-2 d3实现一个首页
+- [ ] yamu-server
+- [ ] 自动布署
+- [ ] d3实现一个首页
+- [ ] support markdown

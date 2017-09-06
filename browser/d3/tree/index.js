@@ -377,392 +377,12 @@
                 "orgCode": "2967"
             }],
             "orgCode": "1329"
-        }, {
-            "name": "中台研发中心",
-            "children": [{
-                "name": "交易支撑产品中心",
-                "children": null,
-                "orgCode": "2893"
-            }, {
-                "name": "交易支撑技术中心",
-                "children": null,
-                "orgCode": "2894"
-            }, {
-                "name": "基础分析产品部",
-                "children": null,
-                "orgCode": "2895"
-            }, {
-                "name": "大数据应用产品部",
-                "children": null,
-                "orgCode": "2896"
-            }, {
-                "name": "平台服务产品中心",
-                "children": null,
-                "orgCode": "2897"
-            }, {
-                "name": "平台服务技术中心",
-                "children": null,
-                "orgCode": "2898"
-            }, {
-                "name": "测试中心",
-                "children": null,
-                "orgCode": "2899"
-            }],
-            "orgCode": "1330"
-        }, {
-            "name": "体育集团研发中心",
-            "children": [{
-                "name": "商业支持研发中心",
-                "children": null,
-                "orgCode": "2910"
-            }, {
-                "name": "社区会员产品研发中心",
-                "children": null,
-                "orgCode": "2911"
-            }, {
-                "name": "资讯产品研发中心",
-                "children": null,
-                "orgCode": "2912"
-            }, {
-                "name": "赛事直播产品研发中心",
-                "children": null,
-                "orgCode": "2913"
-            }],
-            "orgCode": "1331"
-        }, {
-            "name": "供应商及商户平台研发中心",
-            "children": [{
-                "name": "供应链产品研发中心",
-                "children": null,
-                "orgCode": "2914"
-            }, {
-                "name": "供应链管理研发中心",
-                "children": null,
-                "orgCode": "2915"
-            }, {
-                "name": "增值平台研发中心",
-                "children": null,
-                "orgCode": "2916"
-            }, {
-                "name": "开放平台研发中心",
-                "children": null,
-                "orgCode": "2917"
-            }, {
-                "name": "测试中心",
-                "children": null,
-                "orgCode": "2918"
-            }, {
-                "name": "运营增值产品研发中心",
-                "children": null,
-                "orgCode": "2919"
-            }, {
-                "name": "运营管理平台研发中心",
-                "children": null,
-                "orgCode": "2920"
-            }],
-            "orgCode": "1332"
-        }, {
-            "name": "全产业会员研发中心",
-            "children": [{
-                "name": "全产业会员产品中心",
-                "children": null,
-                "orgCode": "2921"
-            }, {
-                "name": "全产业会员技术中心",
-                "children": null,
-                "orgCode": "2922"
-            }, {
-                "name": "总经办",
-                "children": null,
-                "orgCode": "2923"
-            }],
-            "orgCode": "1333"
-        }, {
-            "name": "大数据中心",
-            "children": [{
-                "name": "中台产品研发中心",
-                "children": null,
-                "orgCode": "2946"
-            }, {
-                "name": "智能引擎技术中心",
-                "children": null,
-                "orgCode": "2947"
-            }, {
-                "name": "智能推荐产品研发中心",
-                "children": null,
-                "orgCode": "2948"
-            }, {
-                "name": "智能管理引擎研发中心",
-                "children": null,
-                "orgCode": "2949"
-            }, {
-                "name": "智能营销引擎研发中心",
-                "children": null,
-                "orgCode": "2950"
-            }, {
-                "name": "智能视觉技术研发中心",
-                "children": null,
-                "orgCode": "2951"
-            }, {
-                "name": "智能运营引擎研发中心",
-                "children": null,
-                "orgCode": "2952"
-            }, {
-                "name": "测试部",
-                "children": null,
-                "orgCode": "2953"
-            }, {
-                "name": "语音语义技术研发中心",
-                "children": null,
-                "orgCode": "2954"
-            }],
-            "orgCode": "1334"
-        }, {
-            "name": "物流研发中心",
-            "children": [{
-                "name": "仓储运营技术中心",
-                "children": null,
-                "orgCode": "3006"
-            }, {
-                "name": "仓库运营支撑产品中心",
-                "children": null,
-                "orgCode": "3007"
-            }, {
-                "name": "创新中心",
-                "children": null,
-                "orgCode": "3008"
-            }, {
-                "name": "售后产品中心",
-                "children": null,
-                "orgCode": "3009"
-            }, {
-                "name": "快递运营支撑产品中心",
-                "children": null,
-                "orgCode": "3010"
-            }, {
-                "name": "测试中心",
-                "children": null,
-                "orgCode": "3011"
-            }, {
-                "name": "物流平台产品中心",
-                "children": null,
-                "orgCode": "3012"
-            }],
-            "orgCode": "1335"
-        }, {
-            "name": "清结算中心",
-            "children": null,
-            "orgCode": "1336"
-        }, {
-            "name": "置业集团IT中心",
-            "children": [{
-                "name": "地产研发中心",
-                "children": null,
-                "orgCode": "3015"
-            }, {
-                "name": "营运研发中心",
-                "children": null,
-                "orgCode": "3016"
-            }],
-            "orgCode": "1337"
-        }, {
-            "name": "苏宁技术研究院",
-            "children": [{
-                "name": "总经办",
-                "children": null,
-                "orgCode": "3017"
-            }, {
-                "name": "数据分析部",
-                "children": null,
-                "orgCode": "3018"
-            }, {
-                "name": "智能交互研发中心",
-                "children": null,
-                "orgCode": "3019"
-            }, {
-                "name": "智能商务研发中心",
-                "children": null,
-                "orgCode": "3020"
-            }, {
-                "name": "智能家居研发中心",
-                "children": null,
-                "orgCode": "3021"
-            }, {
-                "name": "美国硅谷研究院",
-                "children": null,
-                "orgCode": "3022"
-            }],
-            "orgCode": "1338"
-        }, {
-            "name": "金融账务核心产品中心",
-            "children": null,
-            "orgCode": "1339"
-        }, {
-            "name": "北研-消费者北京研发中心",
-            "children": [{
-                "name": "总监办",
-                "children": null,
-                "orgCode": "2931"
-            }],
-            "orgCode": "1340"
-        }, {
-            "name": "猫宁商服公司",
-            "children": [{
-                "name": "猫宁研发中心",
-                "children": null,
-                "orgCode": "3013"
-            }],
-            "orgCode": "1341"
-        }, {
-            "name": "金服集团大数据中心",
-            "children": [{
-                "name": "大数据产品设计部",
-                "children": null,
-                "orgCode": "3023"
-            }, {
-                "name": "总监办",
-                "children": null,
-                "orgCode": "3024"
-            }],
-            "orgCode": "1342"
-        }, {
-            "name": "创新产品研发中心",
-            "children": [{
-                "name": "运营商研发中心",
-                "children": null,
-                "orgCode": "2924"
-            }],
-            "orgCode": "1343"
-        }, {
-            "name": "金融研发中心",
-            "children": [{
-                "name": "众筹产品研发中心",
-                "children": null,
-                "orgCode": "3042"
-            }, {
-                "name": "支付业务产品研发中心",
-                "children": null,
-                "orgCode": "3043"
-            }, {
-                "name": "支付基础产品研发中心",
-                "children": null,
-                "orgCode": "3044"
-            }, {
-                "name": "支付平台产品研发中心",
-                "children": null,
-                "orgCode": "3045"
-            }, {
-                "name": "本地生活产品研发中心",
-                "children": null,
-                "orgCode": "3046"
-            }, {
-                "name": "清结算产品研发中心",
-                "children": null,
-                "orgCode": "3047"
-            }, {
-                "name": "理财产品研发中心",
-                "children": null,
-                "orgCode": "3048"
-            }, {
-                "name": "金融会员营销产品研发中心",
-                "children": null,
-                "orgCode": "3049"
-            }],
-            "orgCode": "1344"
-        }, {
-            "name": "消费金融公司",
-            "children": [{
-                "name": "产品研发中心",
-                "children": null,
-                "orgCode": "3004"
-            }],
-            "orgCode": "1345"
-        }, {
-            "name": "北研-北京搜索研发中心",
-            "children": [{
-                "name": "产品部",
-                "children": null,
-                "orgCode": "2925"
-            }, {
-                "name": "总监办",
-                "children": null,
-                "orgCode": "2926"
-            }],
-            "orgCode": "1346"
-        }, {
-            "name": "置业研发中心",
-            "children": [{
-                "name": "商业广场研发中心",
-                "children": null,
-                "orgCode": "3014"
-            }],
-            "orgCode": "1347"
-        }, {
-            "name": "本地生活研发中心",
-            "children": [{
-                "name": "技术中心",
-                "children": null,
-                "orgCode": "2988"
-            }],
-            "orgCode": "1348"
-        }, {
-            "name": "文创集团研发中心",
-            "children": [{
-                "name": "数据及推荐产品研发中心",
-                "children": null,
-                "orgCode": "2983"
-            }, {
-                "name": "文创ERP研发中心",
-                "children": null,
-                "orgCode": "2984"
-            }, {
-                "name": "苏宁视频研发中心",
-                "children": null,
-                "orgCode": "2985"
-            }, {
-                "name": "运营管理平台研发中心",
-                "children": null,
-                "orgCode": "2986"
-            }, {
-                "name": "龙珠研发中心",
-                "children": null,
-                "orgCode": "2987"
-            }],
-            "orgCode": "1349"
-        }, {
-            "name": "IT总部办",
-            "children": null,
-            "orgCode": "1350"
-        }, {
-            "name": "风险管理中心",
-            "children": null,
-            "orgCode": "1351"
-        }, {
-            "name": "广告及搜索研发中心",
-            "children": [{
-                "name": "广告平台研发中心",
-                "children": null,
-                "orgCode": "2955"
-            }, {
-                "name": "搜索产品研发中心",
-                "children": null,
-                "orgCode": "2956"
-            }],
-            "orgCode": "1352"
-        }, {
-            "name": "技术管理办公室",
-            "children": [{
-                "name": "安全管理中心",
-                "children": null,
-                "orgCode": "2960"
-            }],
-            "orgCode": "1353"
         }],
         "orgCode": "1000"
     }
 
     let width = 1000,
-        height = 200,
+        height = 28,
         svg = d3.select('svg')
         .attr('width', width)
         .attr('height', height),
@@ -908,25 +528,67 @@
 
             return path
         }
-
+        
+        let num = 0
+        
         function click(d) {
             if (d.children) {
+                //收起
                 d._children = d.children;
                 d.children = null;
+                resizeSVG()
+                update(d);
             } else {
-                d.children = d._children;
-                d._children = null;
-            }
-            if (d.parent === null) {
-                if (d.children) {
-                    svg.attr('height', 30 * d.children.length)
-                    treemap.size([30 * d.children.length, width])
+                //展开
+                if (d._children) {
+                    d.children = d._children;
+                    d._children = null;
+                    resizeSVG()
+                    update(d);
                 } else {
-                    svg.attr('height', height)
-                    treemap.size([height, width])
+                    //调接口
+                    if (+d.data.orgNodeType === 0) {
+                        HttpService.get('/organizationMgr/getChildOrgByParentCode?orgParentCode=' + d.data.orgCode).then(n => {
+                            d.data.children = n.organizationNodeBOs
+                            let newChild = d3.hierarchy(d.data, d => d.children)
+                            d.children = newChild.children
+                            newChild.children.forEach(n => {
+                                n.parent = d
+                                n.depth += d.depth
+                            })
+                            d.height = newChild.height
+                            let dd = d
+                            while (dd.parent) {
+                                dd.parent.height += 1
+                                dd = dd.parent
+                            }
+                            resizeSVG()
+                            update(d)
+                        })
+                    }
                 }
             }
-            update(d);
+        }
+
+        function resizeSVG() {
+            num = 0
+            getChildrenNum(root)
+            height = 28 * num
+            if (height > svg.attr('height')) {
+                svg.attr('height', height)
+            } else
+                setTimeout(function() {
+                    svg.attr('height', height)
+                }, 1000);
+            treemap = d3.tree().size([height, width])
+        }
+
+        function getChildrenNum(d) {
+            if (d.children) {
+                d.children.forEach(getChildrenNum)
+            } else {
+                num++
+            }
         }
     }
 })();
