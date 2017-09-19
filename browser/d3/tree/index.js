@@ -1,8 +1,8 @@
 (function() {
     let treeData = {
-        "name": "苏宁",
+        "name": "XXX总部",
         "children": [{
-            "name": "云事业部",
+            "name": "a事业部",
             "children": [{
                 "name": "IAAS研发中心",
                 "children": null,
@@ -142,7 +142,7 @@
             }],
             "orgCode": "1321"
         }, {
-            "name": "北研-北京网购研发中心",
+            "name": "b研发中心",
             "children": [{
                 "name": "产品部",
                 "children": null,
@@ -262,7 +262,7 @@
             }],
             "orgCode": "1325"
         }, {
-            "name": "金服集团金融研发中心",
+            "name": "c研发中心",
             "children": [{
                 "name": "上海研发中心",
                 "children": null,
