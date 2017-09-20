@@ -1,4 +1,4 @@
-let names = ['bubble','connect','force','network','tree'],
+let names = ['bubble', 'connect', 'force', 'network', 'tree'],
     flex = document.querySelector('.flex')
 
 names.forEach(d => {
@@ -11,7 +11,7 @@ names.forEach(d => {
                     </div>`,
         frag = document.createRange().createContextualFragment(template)
     flex.appendChild(frag)
-    flex.querySelector('div.grid:last-child .hover-iframe').addEventListener('click',e=>{
+    flex.querySelector('div.grid:last-child .hover-iframe').addEventListener('click', e => {
         location.href = `/d3/${d}/index.html`
     })
 })
