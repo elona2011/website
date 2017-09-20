@@ -7,7 +7,7 @@
 
     var simulation = d3.forceSimulation()
         .force("link", d3.forceLink().id(function(d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(-50))
+        .force("charge", d3.forceManyBody().strength(-200))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
 
@@ -72,7 +72,7 @@
         .selectAll("circle")
         .data(graph.nodes)
         .enter().append("circle")
-        .attr("r", 5)
+        .attr("r", 15)
         .attr("fill", function(d) { return color(d.group); })
         .call(d3.drag()
             .on("start", dragstarted)
@@ -82,7 +82,7 @@
     node.append("title")
         .text(function(d) { return d.id; });
 
-    simulation
+    simulation.alphaDecay(0.005)
         .nodes(graph.nodes)
         .on("tick", ticked);
 
