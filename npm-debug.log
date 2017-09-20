@@ -5,7 +5,7 @@
 1 verbose cli   'pcss',
 1 verbose cli   '--',
 1 verbose cli   '-w',
-1 verbose cli   'browser' ]
+1 verbose cli   'browser/d3' ]
 2 info using npm@3.10.8
 3 info using node@v8.4.0
 4 verbose stack Error: missing script: pcss
@@ -21,7 +21,7 @@
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:501:12)
 5 verbose cwd C:\Users\16092927\Documents\git\website
 6 error Windows_NT 6.1.7601
-7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\16092927\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "pcss" "--" "-w" "browser"
+7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\16092927\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "pcss" "--" "-w" "browser/d3"
 8 error node v8.4.0
 9 error npm  v3.10.8
 10 error missing script: pcss

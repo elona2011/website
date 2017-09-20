@@ -15,6 +15,7 @@
     "author": "jie",
     "license": "MIT",
     "devDependencies": {
+        "@types/node": "^8.0.28",
         "mocha": "^3.5.0",
         "opn": "^5.1.0",
         "yamu": ">=0.0.1"
