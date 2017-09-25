@@ -1,18 +1,57 @@
-(function() {
+(function () {
+    document.addEventListener('dragstart', e => {
+        let fa = e.target.querySelector('i.fa')
+        if (fa) {
+            let type = fa.className.split(' ')[1]
+            e.dataTransfer.setData('text/plain', type)
+        }
+    })
+    document.querySelector('svg').addEventListener('drop', e => {
+        let type = e.dataTransfer.getData('text')
+        data.addNode(type, e.clientX - 50, e.clientY - 50)
+        initD3();
+        simulation.restart()
+    })
+    document.addEventListener('dragover', e => {
+        e.preventDefault()
+    })
+    
     class RectGroup {
-        constructor(nodes, links) {
-            this.nodes = nodes || []
-            this.links = links || []
-            this.index = 10
+        constructor() {
+            this.nodes = []
+            this.links = []
+            this.index = 0
         }
 
-        addNode() {
+        addNode(type, x, y) {
+            this.index++;
             this.nodes.push({
-                id: index,
-                name: 'server ' + index++,
-                x: 250,
-                y: 250
+                id: this.index,
+                name: 'server ' + this.index,
+                x,
+                y,
+                type,
+                icon: this.getIcon(type)
             })
+        }
+
+        getIcon(type) {
+            switch (type) {
+                case 'fa-anchor':
+                    return '\uf13d'
+                case 'fa-archive':
+                    return '\uf187'
+                case 'fa-bed':
+                    return '\uf236'
+                case 'fa-bug':
+                    return '\uf188'
+                case 'fa-car':
+                    return '\uf1b9'
+                case 'fa-cc':
+                    return '\uf20a'
+                case 'fa-cog':
+                    return '\uf013'
+            }
         }
 
         addLink(source, target) {
@@ -42,37 +81,30 @@
         }
     }
 
-    let data = new RectGroup([{
-                "id": 1,
-                "name": "server 1"
-            },
-            {
-                "id": 2,
-                "name": "server 2"
-            }
-        ], [{
-            source: 1,
-            target: 2
-        }]),
+    let data = new RectGroup(),
         svg = d3.select('svg'),
         svgWidth = parseInt(svg.style('width')),
         svgHeight = parseInt(svg.style('height')),
         rectWidth = 100,
-        rectHeight = 50,
+        rectHeight = 100,
         index = 10,
         gMerge, path, pathHover, pathCross,
         drawLineEnable = false,
         drawLineFrom, drawLineTo
+
+    data.addNode('fa-car', 200, 200)
+    data.addNode('fa-car', 200, 200)
+    data.addLink(data.nodes[0], data.nodes[1])
 
     let drag_line = svg.append('path')
         .attr('class', 'dragline hidden')
         .attr('d', 'M0,0L0,0')
 
     const simulation = d3.forceSimulation()
-        .force('link', d3.forceLink().id(d => d.id).distance(100))
-        .force('charge', d3.forceManyBody().strength(200))
-        .force('center', d3.forceCenter(svgWidth / 2, svgHeight / 2))
-        .force('collide', d3.forceCollide(80))
+        .force('link', d3.forceLink().id(d => d.id).distance(200))
+        // .force('charge', d3.forceManyBody().strength(200))
+        // .force('center', d3.forceCenter(svgWidth / 2, svgHeight / 2))
+        .force('collide', d3.forceCollide(100))
 
     init()
 
@@ -91,17 +123,17 @@
         g = linkData.enter()
             .append('g')
             .attr('class', 'link')
-            .on('click', function(d) {
+            .on('click', function (d) {
                 if (drawLineEnable) {
                     let l = d3.select(this)
                     l.select('.line-hover')
                         .classed('selected', true)
                     l.select('use')
                         .classed('hidden', false)
-                        .attr('x', function(d) {
+                        .attr('x', function (d) {
                             return (d.source.x + d.target.x) / 2 - 5
                         })
-                        .attr('y', function(d) {
+                        .attr('y', function (d) {
                             return (d.source.y + d.target.y) / 2 - 5
                         })
                         .on('mousedown', d => {
@@ -144,9 +176,11 @@
             .attr('width', rectWidth)
             .attr('height', rectHeight)
             .attr('transform', 'translate(-' + rectWidth / 2 + ',-' + rectHeight / 2 + ')')
-
         g.append('text')
-            .attr('dy', 3)
+            .attr('class', 'awe')
+            .text(d => d.icon)
+        g.append('text')
+            .attr('dy', 30)
             .text(d => d.name)
 
         g.append('use')
@@ -159,7 +193,7 @@
                 .on('start', dragstarted)
                 .on('drag', dragged)
                 .on('end', dragended))
-            .on('mousedown', function(d) {
+            .on('mousedown', function (d) {
                 if (drawLineEnable) {
                     drawLineFrom = d
 
@@ -171,7 +205,7 @@
                     g.classed('selected', true)
                     g.select('use')
                         .classed('hidden', false)
-                        .on('mousedown', function(d) {
+                        .on('mousedown', function (d) {
                             data.nodes = data.nodes.filter(n => n.id !== d.id)
                             data.links = data.links.filter(n => n.source.id !== d.id && n.target.id !== d.id)
                             initD3()
@@ -203,12 +237,12 @@
     }
 
     function ticked() {
-        path.attr("d", function(d) {
+        path.attr("d", function (d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
         })
-        pathHover.attr("d", function(d) {
+        pathHover.attr("d", function (d) {
             let centerX = d.source.x + (d.target.x - d.source.x) / 2,
                 centerY = d.source.y + (d.target.y - d.source.y) / 2
             return `M${d.source.x},${d.source.y}L${centerX},${centerY}L${d.target.x},${d.target.y}`;
@@ -220,7 +254,7 @@
             return (d.source.y + d.target.y) / 2
         })
 
-        gMerge.attr("transform", function(d) {
+        gMerge.attr("transform", function (d) {
             return "translate(" + d.x + ", " + d.y + ")";
         });
     }
@@ -251,12 +285,6 @@
             buttonView = document.querySelector('.connect .view'),
             buttonEdit = document.querySelector('.connect .edit'),
             svg = document.querySelector('svg')
-
-        buttonAdd.addEventListener('click', e => {
-            data.addNode()
-            initD3();
-            simulation.alphaTarget(0.3).restart()
-        }, false)
 
         buttonView.addEventListener('click', e => {
             buttonView.classList.add('hidden')

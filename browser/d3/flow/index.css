@@ -1,12 +1,12 @@
 div.svg svg {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 2px solid rgba(0, 0, 0, 0);
-  width: 99%;
   position: absolute;
-  height: 95%;
+  width: 98%;
+  height: 98%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 2px solid rgba(0, 0, 0, 0)
 }
 
 div.svg svg.edit {
@@ -28,8 +28,14 @@ div.svg svg .line-hover {
   stroke-width: 30;
 }
 
+div.svg svg .awe {
+  font-family: FontAwesome;
+}
+
 div.svg svg .rect {
-  fill: #aaa;
+  stroke: #aaa;
+  stroke-width: 1;
+  fill: #fff;
 }
 
 div.svg svg text {
@@ -38,9 +44,9 @@ div.svg svg text {
   pointer-events: none;
   stroke: none;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 div.svg svg .selected {
@@ -54,11 +60,23 @@ div.svg svg .cross {
   stroke-width: 2;
   stroke-dasharray: none;
   fill: #fff;
+
+
   /* pointer-events: none; */
 }
 
 .hidden {
   display: none;
+}
+
+ul {
+  display: inline
+}
+
+ul li {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #aaa;
 }
 
 
