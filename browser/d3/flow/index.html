@@ -4,37 +4,66 @@
     <meta charset="utf-8">
     <title>test</title>
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="src/index.css">
 </head>
 
 <body>
     <div class="connect">
-        <button class="view hidden" style="color:red;">回到展示</button>
-        <button class="edit">进入编辑</button>
-        <ul class="add hidden">
-            <li draggable="true">
-                <i class="fa fa-anchor" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-archive" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-bed" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-bug" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-car" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-cc" aria-hidden="true"></i>
-            </li>
-            <li draggable="true">
-                <i class="fa fa-cog" aria-hidden="true"></i>
-            </li>
-        </ul>
-        <div class="svg">
+        <div class="left">
+            <button class="view hidden" style="color:red;">回到展示</button>
+            <button class="edit">进入编辑</button>
+            <hr>
+            components
+            <ul class="add">
+                <li draggable="true">
+                    <i class="fa fa-anchor" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-bed" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-bug" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-car" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-cc" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </li>
+            </ul>
+            <hr>
+            attachments
+            <ul class="add">
+                <li draggable="true">
+                    <i class="fa fa-anchor" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-bed" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-bug" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-car" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-cc" aria-hidden="true"></i>
+                </li>
+                <li draggable="true">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="svg middle">
             <svg>
                 <defs>
                     <marker id="Triangle" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="5" markerHeight="5" orient="auto" fill="#aaa">
@@ -47,8 +76,9 @@
                 </defs>
             </svg>
         </div>
+        <div class="right"></div>
     </div>
     <script src="https://cdn.bootcss.com/d3/4.10.0/d3.min.js"></script>
-    <script src="index.js"></script>
+    <script src="built/index.js"></script>
 
 </body>
